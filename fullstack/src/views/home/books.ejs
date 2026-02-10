@@ -3,7 +3,9 @@
 <section>
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <% books.forEach(book=> { %>
+            <!-- corrección: usamos viewData.books en lugar de books suelto -->
+            <% if (viewData && Array.isArray(viewData.books)) { %>
+            <% viewData.books.forEach(book=> { %>
                 <div
                     class="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 p-6 border border-gray-200">
                     <div class="flex justify-between items-center mb-2">
@@ -26,6 +28,7 @@
                     </div>
                     <p class="text-gray-500 text-sm mb-3">
                         <i class="fas fa-tag mr-2"></i>
+                        <!-- corrección: usamos la propiedad category en minúsculas -->
                         <%= book.category %>
                     </p>
                     <div class="bg-gray-50 rounded-lg p-3 mb-4">
@@ -42,6 +45,7 @@
                     </div>
                 </div>
                 <% }); %>
+            <% } %>
         </div>
     </div>
 </section>
