@@ -1,6 +1,22 @@
 <script setup lang="ts">
 import { BookService } from '@/services/BookService.js';
 const books = BookService.getBooks();
+
+// functions
+
+function formatToCOP(price: number): string {
+  const formatter = new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+
+    currency: 'COP',
+
+    minimumFractionDigits: 0,
+
+    maximumFractionDigits: 0,
+  });
+
+  return formatter.format(price).replace(/^\s*\$\s?/, '');
+}
 </script>
 
 <template>
@@ -52,8 +68,7 @@ const books = BookService.getBooks();
             <div class="bg-gray-50 rounded-lg p-3 mb-4">
               <div class="flex justify-between text-sm">
                 <span class="text-gray-600">Price:</span>
-
-                <span class="font-semibold">${{ book.price }}</span>
+                <span class="font-semibold">${{ formatToCOP(book.price) }} COP</span>
               </div>
             </div>
 
