@@ -16,15 +16,16 @@ async function submitForm() {
     price: price.value,
     stock: stock.value,
   };
-try {
-  await BookService.createBook(newBook);
-  successMessage.value = 'Book created successfully!';
-  title.value = '';
-  category.value = '';
-  price.value = 0;
-  stock.value = 0;
-} catch (error){
-  console.error(error);
+  try {
+    await BookService.createBook(newBook);
+    successMessage.value = 'Book created successfully!';
+    title.value = '';
+    category.value = '';
+    price.value = 0;
+    stock.value = 0;
+  } catch (error) {
+    console.error(error);
+  }
 }
 </script>
 
